@@ -2,7 +2,6 @@
 __pycache__/
 *.pyc
 .venv/
-.env
 
 # VS Code
 .vscode/
@@ -13,3 +12,17 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Alembic cache
+*.sqlite3
+
+# Docker
+postgres_data/
+
+# Misc
+.idea/
