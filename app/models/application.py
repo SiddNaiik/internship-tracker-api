@@ -1,6 +1,7 @@
-from sqlalchemy import ForeignKey, String, text
+from sqlalchemy import Enum as SAEnum, ForeignKey, String
 from sqlalchemy.orm import Mapped, mapped_column
 
+from app.enums import ApplicationStatus
 from app.models.base import Base
 
 class Application(Base):
@@ -13,4 +14,9 @@ class Application(Base):
     role_title: Mapped[str] = mapped_column(String(200), nullable=False)
     job_url: Mapped[str | None] = mapped_column(String(1000), nullable=True)
     location: Mapped[str | None] = mapped_column(String(200), nullable=True)
-    status: Mapped[str] = mapped_column(String(50), nullable=False, server_default=text("'applied'"))
+
+    status: Mapped[ApplicationStatus] = mapped_column(
+        SAEnum(ApplicationStatus, name="application_status"),
+        nullable=False,
+        default=ApplicationStatus.applied,
+    )
