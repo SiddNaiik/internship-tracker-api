@@ -13,7 +13,10 @@ DATABASE_URL = os.getenv(
     "DATABASE_URL", 
     "postgresql+psycopg://app:app@localhost:5432/internship_tracker")
 
-engine = create_engine(DATABASE_URL, pool_pre_ping=True)
+def get_engine(url: str = DATABASE_URL):
+    return create_engine(url, pool_pre_ping=True)
+
+engine = get_engine()
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
 def db_ping() -> bool:
