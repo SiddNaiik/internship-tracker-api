@@ -24,6 +24,7 @@ jobs:
 
       - name: Run tests
         env:
+          DATABASE_URL: sqlite:///./test.db
           PYTHONPATH: .
         run: |
           python -m pytest -q
